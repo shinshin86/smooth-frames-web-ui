@@ -2,6 +2,16 @@
 
 Web UI tool for smoothing videos using [RIFE ncnn Vulkan](https://github.com/nihui/rife-ncnn-vulkan).
 
+## Demo
+
+### Input video
+
+https://github.com/shinshin86/smooth-frames-web-ui/assets/8216064/69aee72c-bff7-434f-b462-71afe108b524
+
+### Output video
+
+https://github.com/shinshin86/smooth-frames-web-ui/assets/8216064/05a8abe9-8abe-46a3-b716-38d8e4a1d56b
+
 ## Usage
 
 First you need to install [RIFE ncnn Vulkan](https://github.com/nihui/rife-ncnn-vulkan) in your environment.  
