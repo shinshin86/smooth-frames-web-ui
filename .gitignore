@@ -17,7 +17,6 @@ flagged/
 
 # app
 .env
-demo/
 rife-ncnn-vulkan/
 output.mp4
 output.webm
