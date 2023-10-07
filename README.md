@@ -49,7 +49,12 @@ Access to `localhost:7860`.
 
 ![gradion web ui](./demo/gradio_webui_image.png)
 
+### About codecs
 
+On the Web UI, previews can only be displayed in webm format (with the codecs currently available for selection).  
+Therefore, the default is to export files in webm (VP9 codec).  
+However, mp4 (MPEG4-V codec) has a smaller file size after conversion.  
+You can change these codecs in the drop-down list.
 
 ## Special thanks
 
