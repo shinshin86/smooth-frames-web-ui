@@ -1,0 +1,25 @@
+[project]
+name = "smooth-frames-web-ui"
+version = "0.0.1"
+description = "Web UI tool for smoothing videos using RIFE ncnn Vulkan."
+authors = [
+    { name = "shinshin86", email = "shinshin86npm@gmail.com" }
+]
+dependencies = [
+    "opencv-python>=4.8.1.78",
+    "python-dotenv>=1.0.0",
+    "gradio>=3.47.1",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true

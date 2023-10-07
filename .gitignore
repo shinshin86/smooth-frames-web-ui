@@ -1,0 +1,23 @@
+# python generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# venv
+.venv
+
+# gradio
+flagged/
+
+# mac
+.DS_Store
+
+# app
+.env
+demo/
+rife-ncnn-vulkan/
+output.mp4
+output.webm
