@@ -4,6 +4,7 @@ import os
 import concurrent.futures
 import shutil
 import tempfile
+import argparse
 import cv2
 from dotenv import load_dotenv
 import gradio as gr
@@ -13,6 +14,10 @@ OUTPUT_FRAMES_FOLDER = "temp_output_frames"
 
 load_dotenv()
 rife_ncnn_vulkan_path = os.getenv("RIFE_NCNN_VULKAN_PATH")
+
+parser = argparse.ArgumentParser(description="Launch the smooth-frames-web-ui on Gradio Interface")
+parser.add_argument("--share", action="store_true", help="Enable sharing the app")
+args = parser.parse_args()
 
 codec_mapping = {
     "VP9": "vp09",
@@ -196,4 +201,4 @@ def process_video(input_video, codec_choice, output_video):
 input_video = gr.File(label="Upload a video")
 output_video = gr.Video(label="Processed video")
 codec_choice = gr.Dropdown(choices=["VP9", "MPEG4-V"], value="VP9", label="Select a Codec")
-gr.Interface(fn=process_video, inputs=[input_video, codec_choice], outputs=output_video).launch()
+gr.Interface(fn=process_video, inputs=[input_video, codec_choice], outputs=output_video).launch(share=args.share)

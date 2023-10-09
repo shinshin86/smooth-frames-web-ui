@@ -56,6 +56,26 @@ Therefore, the default is to export files in webm (VP9 codec).
 However, mp4 (MPEG4-V codec) has a smaller file size after conversion.  
 You can change these codecs in the drop-down list.
 
+## Google Colab
+
+To use on Google Colab, execute the following command
+
+```
+!apt-get install -y libvulkan-dev
+
+!git clone https://github.com/shinshin86/smooth-frames-web-ui.git
+%cd smooth-frames-web-ui
+
+!wget https://github.com/nihui/rife-ncnn-vulkan/releases/download/20221029/rife-ncnn-vulkan-20221029-ubuntu.zip
+!unzip rife-ncnn-vulkan-20221029-ubuntu
+
+!echo "RIFE_NCNN_VULKAN_PATH =./rife-ncnn-vulkan-20221029-ubuntu/rife-ncnn-vulkan" > .env
+
+!pip install gradio python-dotenv
+
+!python launch.py --share
+```
+
 ## Special thanks
 
 I came up with this program after learning about [RIFE ncnn Vulkan](https://github.com/nihui/rife-ncnn-vulkan).
