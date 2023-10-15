@@ -58,6 +58,10 @@ You can change these codecs in the drop-down list.
 
 ## Google Colab
 
+**Does not work as expected on Google Colab  
+See this issue for details.**  
+https://github.com/shinshin86/smooth-frames-web-ui/issues/1
+
 To use on Google Colab, execute the following command
 
 ```
