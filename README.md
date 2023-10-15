@@ -61,7 +61,7 @@ You can change these codecs in the drop-down list.
 To use on Google Colab, execute the following command
 
 ```
-!apt-get install -y libvulkan-dev
+!apt-get install -y libvulkan1
 
 !git clone https://github.com/shinshin86/smooth-frames-web-ui.git
 %cd smooth-frames-web-ui

@@ -14,6 +14,7 @@ OUTPUT_FRAMES_FOLDER = "temp_output_frames"
 
 load_dotenv()
 rife_ncnn_vulkan_path = os.getenv("RIFE_NCNN_VULKAN_PATH")
+rife_model_path = "./rife-ncnn-vulkan/rife-v4.6"
 
 parser = argparse.ArgumentParser(description="Launch the smooth-frames-web-ui on Gradio Interface")
 parser.add_argument("--share", action="store_true", help="Enable sharing the app")
@@ -48,7 +49,7 @@ def interpolate_frames(prev_frame, next_frame, interp_factor):
 
 
 def generate_intermediate_frame(img_path1, img_path2, output_path):
-    cmd = [rife_ncnn_vulkan_path, "-0", img_path1, "-1", img_path2, "-o", output_path]
+    cmd = [rife_ncnn_vulkan_path, "-m", rife_model_path, "-0", img_path1, "-1", img_path2, "-o", output_path]
     subprocess.run(cmd)
     return output_path
 
