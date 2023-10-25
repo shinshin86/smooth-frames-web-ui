@@ -12,7 +12,25 @@ https://github.com/shinshin86/smooth-frames-web-ui/assets/8216064/69aee72c-bff7-
 
 https://github.com/shinshin86/smooth-frames-web-ui/assets/8216064/05a8abe9-8abe-46a3-b716-38d8e4a1d56b
 
-## Usage
+## Setup
+
+### Setup script (macOS)
+You can run this shell script to perform all setups at once.  
+This project uses [rye](https://github.com/mitsuhiko/rye) as the Python project management tool.  
+Note that running the setup script will install rye on your machine!  
+(Note that if it is already installed, the installation process will be skipped.)
+
+**What is executed**
+
+1. Install `rye`
+2. Creating .env files
+3. Download `RIFE ncnn Vulkan`
+
+```
+bash setup-mac.sh
+```
+
+### Manual (Windows or macOS or Linux)
 
 First you need to install [RIFE ncnn Vulkan](https://github.com/nihui/rife-ncnn-vulkan) in your environment.  
 Release binaries for each OS are available in [GitHub releases](https://github.com/nihui/rife-ncnn-vulkan/releases), so please download them.
@@ -39,7 +57,9 @@ This project uses [rye](https://github.com/mitsuhiko/rye).
 rye sync
 ```
 
-Finally, run the following command to launch Gradio's Web UI.
+## Usage
+
+Run the following command to launch Gradio's Web UI.
 
 ```
 python launch.py
