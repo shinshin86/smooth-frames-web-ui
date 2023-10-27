@@ -18,10 +18,12 @@ click==8.1.7
 contourpy==1.1.1
 cycler==0.12.1
 fastapi==0.103.2
+ffmpeg-python==0.2.0
 ffmpy==0.3.1
 filelock==3.12.4
 fonttools==4.43.1
 fsspec==2023.9.2
+future==0.18.3
 gradio==3.47.1
 gradio-client==0.6.0
 h11==0.14.0

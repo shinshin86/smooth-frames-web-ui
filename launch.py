@@ -8,6 +8,8 @@ import argparse
 import cv2
 from dotenv import load_dotenv
 import gradio as gr
+import ffmpeg
+import time
 
 FRAMES_FOLDER = "temp_frames"
 OUTPUT_FRAMES_FOLDER = "temp_output_frames"
@@ -119,24 +121,41 @@ def extract_frames_from_video(video_path, output_folder, target_fps=60/2):
     return frames
 
 
-def generate_video_from_images(image_paths, codec):
+def generate_video_from_images(image_dir, codec):
     if codec == "mp4v":
-        fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
+        vcodec = 'mpeg4'
         output_video_name = "output.mp4"
+        pix_fmt = 'yuv420p'
     elif codec == "vp09":
-        fourcc = cv2.VideoWriter_fourcc('v', 'p', '0', '9')
+        vcodec = 'libvpx-vp9'
         output_video_name = "output.webm"
+        pix_fmt = 'yuva420p'
+    else:
+        raise ValueError("Invalid codec specified")
 
-    img = cv2.imread(image_paths[0])
-    height, width, layers = img.shape
-    video = cv2.VideoWriter(output_video_name, fourcc, 60, (width, height))
+    # Ensure the directory is valid
+    if not os.path.exists(image_dir):
+        raise ValueError("The image directory does not exist")
 
-    for image_path in image_paths:
-        if is_valid_frame_filename(image_path):
-            img = cv2.imread(image_path)
-            video.write(img)
+    image_pattern = os.path.join(image_dir, '%08d.png')
 
-    video.release()
+    # Obtain the dimensions of the first image
+    probe = ffmpeg.probe(image_pattern % 1)
+    video_info = next(stream for stream in probe['streams'] if stream['codec_type'] == 'video')
+    width = int(video_info['width'])
+    height = int(video_info['height'])
+
+    try:
+        (
+            ffmpeg
+            .input(image_pattern, framerate=60)
+            .output(output_video_name, vcodec=vcodec, pix_fmt=pix_fmt, s=f'{width}x{height}')
+            .global_args("-y")
+            .run()
+        )
+    except ffmpeg._run.Error as e:
+        print(f'ffmpeg stderr:\n{e.stderr.decode()}')
+        raise e
 
     return output_video_name
 
@@ -153,8 +172,7 @@ def interpolate_and_create_video(video_path, codec):
 
     generate_intermediate_frames_with_dir(FRAMES_FOLDER, OUTPUT_FRAMES_FOLDER)
 
-    all_frames = [os.path.join(OUTPUT_FRAMES_FOLDER, f) for f in os.listdir(OUTPUT_FRAMES_FOLDER) if is_valid_frame_filename(f)]
-    return generate_video_from_images(sorted(all_frames), codec)
+    return generate_video_from_images(OUTPUT_FRAMES_FOLDER, codec)
 
 
 def delete_all_files_in_dir(dir_path):
@@ -172,6 +190,8 @@ def delete_all_files_in_dir(dir_path):
 
 
 def process_video(input_video, codec_choice, output_video):
+    start_time = time.time()
+
     if not os.path.exists(rife_ncnn_vulkan_path):
         raise FileNotFoundError(f"RIFE ncnn Vulkan at path {rife_ncnn_vulkan_path} does not exist. Check your configuration.")
 
@@ -194,6 +214,8 @@ def process_video(input_video, codec_choice, output_video):
     delete_all_files_in_dir('temp_output_frames')
     shutil.rmtree(temp_dir)
 
+    end_time = time.time()
+    print(f"Execution time: {end_time - start_time} second")
     return output_video
 
 

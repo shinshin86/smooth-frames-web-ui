@@ -9,6 +9,7 @@ dependencies = [
     "opencv-python>=4.8.1.78",
     "python-dotenv>=1.0.0",
     "gradio>=3.47.1",
+    "ffmpeg-python>=0.2.0",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
