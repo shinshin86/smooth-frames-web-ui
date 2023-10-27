@@ -22,8 +22,8 @@ parser.add_argument("--share", action="store_true", help="Enable sharing the app
 args = parser.parse_args()
 
 codec_mapping = {
-    "VP9": "vp09",
-    "MPEG4-V": "mp4v"
+    "OpenH264": "openh264",
+    "VP9": "vp09"
 }
 
 
@@ -122,8 +122,8 @@ def extract_frames_from_video(video_path, output_folder, target_fps=60/2):
 
 
 def generate_video_from_images(image_dir, codec):
-    if codec == "mp4v":
-        vcodec = 'mpeg4'
+    if codec == "openh264":
+        vcodec = 'libopenh264'
         output_video_name = "output.mp4"
         pix_fmt = 'yuv420p'
     elif codec == "vp09":
@@ -222,5 +222,5 @@ def process_video(input_video, codec_choice, output_video):
 # gradio
 input_video = gr.File(label="Upload a video")
 output_video = gr.Video(label="Processed video")
-codec_choice = gr.Dropdown(choices=["VP9", "MPEG4-V"], value="VP9", label="Select a Codec")
+codec_choice = gr.Dropdown(choices=["OpenH264", "VP9"], value="OpenH264", label="Select a Codec")
 gr.Interface(fn=process_video, inputs=[input_video, codec_choice], outputs=output_video).launch(share=args.share)
