@@ -149,7 +149,7 @@ def generate_video_from_images(image_dir, codec):
         (
             ffmpeg
             .input(image_pattern, framerate=60)
-            .output(output_video_name, vcodec=vcodec, pix_fmt=pix_fmt, s=f'{width}x{height}')
+            .output(output_video_name, vcodec=vcodec, pix_fmt=pix_fmt, s=f'{width}x{height}', video_bitrate='5000k')
             .global_args("-y")
             .run()
         )
