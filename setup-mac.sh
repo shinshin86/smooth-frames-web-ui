@@ -26,6 +26,27 @@ else
     echo "rife-ncnn-vulkan directory already exists."
 fi
 
+# Check if ffmpeg is installed
+if ! command -v ffmpeg &> /dev/null
+then
+    echo "ffmpeg is not installed. Please install ffmpeg (supports OpenH264)."
+    echo "==================================================================="
+    echo "curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/shinshin86/setup-mac-ffmpeg-with-openh264-ciscobinary/main/setup-mac-openh264.sh | bash"
+    exit 1
+fi
+
+# Check if ffmpeg supports OpenH264
+if ffmpeg -codecs 2>&1 | grep -q "openh264"
+then
+    echo "ffmpeg supports OpenH264."
+else
+    echo "ffmpeg does not support OpenH264."
+    echo "First uninstall FFmpeg, then please run the specific command to configure ffmpeg to support OpenH264."
+    echo "====================================================================================================="
+    echo "curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/shinshin86/setup-mac-ffmpeg-with-openh264-ciscobinary/main/setup-mac-openh264.sh | bash"
+    exit 1
+fi
+
 echo "setup script is complete"
 echo "========================"
 echo -e "Start web ui with this command: \033[36mpython launch.py\033[0m"

@@ -60,8 +60,11 @@ rye sync
 
 This program requires that `FFmpeg` be installed in the execution environment. In addition, `OpenH264` must be supported by FFmpeg in order to export in H.264.
 
-See: [setup-mac-ffmpeg-with-openh264-ciscobinary](https://github.com/shinshin86/setup-mac-ffmpeg-with-openh264-ciscobinary)  
-This installation script is designed under the assumption that OpenH264 will use this binary
+Here is the installation command assuming macOS.
+
+```
+curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/shinshin86/setup-mac-ffmpeg-with-openh264-ciscobinary/main/setup-mac-openh264.sh | bash
+```
 
 ## Usage
 
