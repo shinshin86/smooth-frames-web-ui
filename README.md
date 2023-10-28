@@ -25,6 +25,7 @@ Note that running the setup script will install rye on your machine!
 1. Install `rye`
 2. Creating .env files
 3. Download `RIFE ncnn Vulkan`
+4. TODO: Not yet -> ~~Install `ffmpeg (supports OpenH264)`~~
 
 ```
 bash setup-mac.sh
@@ -56,6 +57,15 @@ This project uses [rye](https://github.com/mitsuhiko/rye).
 ```
 rye sync
 ```
+
+This program requires that `FFmpeg` be installed in the execution environment. In addition, `OpenH264` must be supported by FFmpeg in order to export in H.264.
+
+TODO:  
+Installation script is under construction.
+This installation script is designed under the assumption that OpenH264 will use this binary
+
+http://ciscobinary.openh264.org/libopenh264-2.3.1-mac-arm64.dylib.bz2
+
 
 ## Usage
 
