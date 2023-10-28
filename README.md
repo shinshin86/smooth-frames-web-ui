@@ -25,7 +25,7 @@ Note that running the setup script will install rye on your machine!
 1. Install `rye`
 2. Creating .env files
 3. Download `RIFE ncnn Vulkan`
-4. TODO: Not yet, See [Manual](#Manual) -> ~~Install `ffmpeg (supports OpenH264)`~~
+4. TODO: Not yet, See [Manual](#manual-windows-or-macos-or-linux) -> ~~Install `ffmpeg (supports OpenH264)`~~
 
 ```
 bash setup-mac.sh
